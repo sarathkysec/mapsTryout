@@ -1,0 +1,25 @@
+{
+  "name": "cmaps",
+  "version": "1.0.0",
+  "description": "GeoAtlas is a modern, serverless web application built with vanilla JavaScript and Leaflet.js. It provides a sleek interface for exploring the world with OpenStreetMap.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:expo": "vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'mobile/assets/web/index.html')\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "lucide": "^0.577.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vite": "^8.0.1",
+    "vite-plugin-singlefile": "^2.3.2"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  }
+}

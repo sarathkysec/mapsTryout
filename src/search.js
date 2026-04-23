@@ -11,19 +11,16 @@ export async function loadLocalData() {
     if (localData.loaded) return;
 
     try {
-        const [citiesResponse, landmarksResponse] = await Promise.all([
-            fetch('/assets/data/ne_110m_populated_places.geojson'),
+        const [citiesRes, touristRes] = await Promise.all([
+            fetch('/assets/data/ne_110m_populated_places.json'),
             fetch('/assets/data/tourist_places.json')
         ]);
+        
+        const citiesGeoJson = await citiesRes.json();
+        const touristPlaces = await touristRes.json();
 
-        if (citiesResponse.ok) {
-            const citiesGeoJson = await citiesResponse.json();
-            localData.cities = citiesGeoJson.features || [];
-        }
-
-        if (landmarksResponse.ok) {
-            localData.landmarks = await landmarksResponse.json();
-        }
+        localData.cities = citiesGeoJson.features || [];
+        localData.landmarks = touristPlaces;
 
         localData.loaded = true;
     } catch (error) {

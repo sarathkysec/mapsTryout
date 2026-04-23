@@ -1,3 +1,17 @@
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import iconUrl from 'leaflet/dist/images/marker-icon.png';
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl,
+    iconUrl,
+    shadowUrl,
+});
+
 import { LIGHT_TILES, DARK_TILES, mapOptions, REVERSE_GEO_API } from './config.js';
 import { getSavedPlaces } from './storage.js';
 
@@ -177,7 +191,7 @@ async function fetchPlaceDetails(lat, lng) {
 
 async function loadIndiaBorders() {
     try {
-        const response = await fetch('assets/data/india-composite.geojson');
+        const response = await fetch('/assets/data/india-composite.json');
         const data = await response.json();
 
         indiaBorderLayer = L.geoJSON(data, {

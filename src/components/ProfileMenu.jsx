@@ -1,4 +1,5 @@
-// ProfileMenu Component
+import React from 'react';
+
 const ProfileMenu = ({ showMenu, onToggle, menuRef, containerRef }) => {
     const [user, setUser] = React.useState(null);
     const googleBtnRef = React.useRef(null);
@@ -100,4 +101,4 @@ const ProfileMenu = ({ showMenu, onToggle, menuRef, containerRef }) => {
     );
 };
 
-window.ProfileMenu = ProfileMenu;
+export default ProfileMenu;

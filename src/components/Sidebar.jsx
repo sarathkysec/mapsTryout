@@ -1,4 +1,5 @@
-// Sidebar Component
+import React from 'react';
+
 const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
 
     const [view, setView] = React.useState('explore'); // 'explore' or 'saved'
@@ -151,4 +152,4 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
     );
 };
 
-window.Sidebar = Sidebar;
+export default Sidebar;

@@ -1,4 +1,6 @@
-// CustomControls Component
+import React from 'react';
+import L from 'leaflet';
+
 const CustomControls = () => {
 
     const handleZoomIn = () => {
@@ -54,4 +56,4 @@ const CustomControls = () => {
     );
 };
 
-window.CustomControls = CustomControls;
+export default CustomControls;

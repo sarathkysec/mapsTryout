@@ -1,4 +1,9 @@
-// Main App Component
+import React from 'react';
+import FloatingSearch from './FloatingSearch.jsx';
+import Sidebar from './Sidebar.jsx';
+import PlaceDetailsCard from './PlaceDetailsCard.jsx';
+import CustomControls from './CustomControls.jsx';
+
 const App = () => {
     const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
@@ -37,4 +42,4 @@ const App = () => {
     );
 };
 
-window.App = App;
+export default App;

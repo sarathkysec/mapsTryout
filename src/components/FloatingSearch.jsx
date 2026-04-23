@@ -1,4 +1,6 @@
-// FloatingSearch Component
+import React from 'react';
+import ProfileMenu from './ProfileMenu.jsx';
+
 const FloatingSearch = ({ onSearchChange, onSearchClick, onMenuToggle }) => {
     const [searchQuery, setSearchQuery] = React.useState('');
     const [searchResults, setSearchResults] = React.useState([]);
@@ -125,4 +127,4 @@ const FloatingSearch = ({ onSearchChange, onSearchClick, onMenuToggle }) => {
     );
 };
 
-window.FloatingSearch = FloatingSearch;
+export default FloatingSearch;

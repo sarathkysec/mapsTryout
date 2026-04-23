@@ -1,4 +1,5 @@
-// PlaceDetailsCard Component
+import React from 'react';
+
 const PlaceDetailsCard = () => {
     const [placeData, setPlaceData] = React.useState(null);
     const [isVisible, setIsVisible] = React.useState(false);
@@ -202,4 +203,4 @@ const PlaceDetailsCard = () => {
     );
 };
 
-window.PlaceDetailsCard = PlaceDetailsCard;
+export default PlaceDetailsCard;

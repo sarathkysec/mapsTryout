@@ -13,9 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Removed Leaflet CSS CDN -->
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -46,61 +44,7 @@
         <div id="root"></div>
     </div>
 
-    <!-- React, ReactDOM, and Babel CDN -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <!-- React Components (All in one script to fix loading order) -->
-    <!-- React Components (All in one script to fix loading order) -->
-    <script type="text/babel">
-        // Load all component scripts in order
-        const scripts = [
-            'src/components/ProfileMenu.jsx',
-            'src/components/FloatingSearch.jsx',
-            'src/components/Sidebar.jsx',
-            'src/components/PlaceDetailsCard.jsx',
-            'src/components/CustomControls.jsx',
-            'src/components/App.jsx'
-        ];
-
-        // Add cache busting timestamp
-        Promise.all(scripts.map(src => fetch(src + '?t=' + Date.now()).then(r => r.text())))
-            .then(codes => {
-                // Execute all component code
-                codes.forEach(code => {
-                    try {
-                        eval(Babel.transform(code, { presets: ['react'] }).code);
-                    } catch (e) {
-                        console.error("Error transforming/executing component:", e);
-                    }
-                });
-
-                // Ensure App is defined before rendering
-                if (window.App) {
-                    const rootElement = document.getElementById('root');
-                    if (rootElement) {
-                        const root = ReactDOM.createRoot(rootElement);
-                        root.render(React.createElement(window.App));
-                    }
-                } else {
-                    console.error("App component not found!");
-                }
-
-                // Initialize Lucide icons
-                setTimeout(() => {
-                    if (window.lucide) lucide.createIcons();
-                }, 100);
-            })
-            .catch(err => console.error("Error loading React components:", err));
-    </script>
-
-    <!-- Main App -->
-    <script type="module" src="src/app.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
