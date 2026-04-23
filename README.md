@@ -1,6 +1,6 @@
-# GeoAtlas | Premium OpenStreetMap Experience
+#  OpenStreetMap Tryout
 
-GeoAtlas is a modern, serverless web application built with vanilla JavaScript and Leaflet.js. It provides a sleek interface for exploring the world with OpenStreetMap.
+ It provides a sleek interface for exploring the world with OpenStreetMap. GeoAtlas is a modern, serverless web application built with vanilla JavaScript and Leaflet.js.
 
 ## ✨ Features
 
