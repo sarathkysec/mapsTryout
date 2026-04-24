@@ -4,6 +4,7 @@
   "description": "GeoAtlas is a modern, serverless web application built with vanilla JavaScript and Leaflet.js. It provides a sleek interface for exploring the world with OpenStreetMap.",
   "main": "index.js",
   "scripts": {
+    "start":"npx vite",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:expo": "vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'mobile/assets/web/index.html')\""
   },
