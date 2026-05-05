@@ -143,6 +143,11 @@ const PlaceDetailsCard = () => {
         }
     };
 
+    const handleOpenMaps = () => {
+        const gmapsUrl = `https://www.google.com/maps?q=${placeData.lat},${placeData.lng}`;
+        window.open(gmapsUrl, '_blank', 'noopener,noreferrer');
+    };
+
     if (!placeData) return null;
 
     const name = placeData.loading ? 'Searching...'
@@ -196,6 +201,11 @@ const PlaceDetailsCard = () => {
                     <button className="action-btn" title="Share" onClick={handleShare}>
                         <i data-lucide="share-2"></i>
                         <span>Share</span>
+                    </button>
+
+                    <button className="action-btn" title="Open in Google Maps" onClick={handleOpenMaps}>
+                        <i data-lucide="map-pin"></i>
+                        <span>Maps</span>
                     </button>
                 </div>
             </div>
