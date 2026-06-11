@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './components/App.jsx';
-import './app.js'; // Initialize map, auth, theme, etc.
+import './app.js';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
     const root = ReactDOM.createRoot(rootElement);
-    root.render(React.createElement(App));
+    root.render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    );
 }

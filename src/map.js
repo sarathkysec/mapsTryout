@@ -81,7 +81,7 @@ function autoLocateUser() {
         try {
             const res = await fetch('http://ip-api.com/json/?fields=lat,lon');
             const d = await res.json();
-            if (d.lat && d.lon) showDot(d.lat, d.lon, 7);
+            if (d.lat && d.lon) showDot(d.lat, d.lon, 5);
         } catch { /* ignore */ }
     };
     ipFallback();

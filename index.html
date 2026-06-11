@@ -8,20 +8,27 @@
     <meta name="description"
         content="A premium, serverless OpenStreetMap experience with modern UI and seamless interactions.">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (load non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </noscript>
 
     <!-- Removed Leaflet CSS CDN -->
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons (deferred) -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
-    <link rel="stylesheet" href="assets/style.css">
+    <!-- Local stylesheet (load non-blocking) -->
+    <link rel="preload" href="assets/style.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="assets/style.css">
+    </noscript>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS (deferred) -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script defer>
         tailwind.config = {
             darkMode: ['class', '[data-theme="dark"]'],

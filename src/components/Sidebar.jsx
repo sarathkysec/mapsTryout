@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
-
-    const [view, setView] = React.useState('explore'); // 'explore' or 'saved'
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [view, setView] = React.useState('explore');
     const [savedPlaces, setSavedPlaces] = React.useState([]);
 
     const featuredLocations = [
@@ -13,48 +15,46 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
     ];
 
     React.useEffect(() => {
-        // Initial load
-        const loadStyles = async () => {
+        const load = async () => {
             const { getSavedPlaces } = await import('/src/storage.js');
             setSavedPlaces(getSavedPlaces());
         };
-        loadStyles();
-
-        // Listen for updates
+        load();
         const handleUpdate = (e) => setSavedPlaces(e.detail);
         window.addEventListener('saved-places-updated', handleUpdate);
         return () => window.removeEventListener('saved-places-updated', handleUpdate);
     }, []);
 
     const handleLocationClick = (lat, lon, placeData = null) => {
-        if (window.flyToLocation) {
-            window.flyToLocation(lat, lon);
-        }
-        if (placeData) {
-            window.dispatchEvent(new CustomEvent('place-selected', { detail: placeData }));
-        }
-        if (window.innerWidth < 768) onClose(); // Close on mobile
+        if (window.flyToLocation) window.flyToLocation(lat, lon);
+        if (placeData) window.dispatchEvent(new CustomEvent('place-selected', { detail: placeData }));
+        if (window.innerWidth < 768) onClose();
     };
 
     const sidebarRef = React.useRef(null);
-
     React.useEffect(() => {
-        const handleClickOutside = (event) => {
-            // If sidebar is open, and click is NOT inside sidebar, and NOT on the menu toggle button
-            if (isOpen && sidebarRef.current && !sidebarRef.current.contains(event.target) && !event.target.closest('#menu-toggle')) {
+        const handleClickOutside = (e) => {
+            if (isOpen && sidebarRef.current && !sidebarRef.current.contains(e.target) && !e.target.closest('#menu-toggle')) {
                 onClose();
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [isOpen, onClose]);
 
     React.useEffect(() => {
         if (window.lucide) lucide.createIcons();
     }, [view, savedPlaces, isOpen]);
+
+    const handleNavClick = (path) => {
+        navigate(path);
+        onClose();
+    };
+
+    const navItems = [
+        { path: '/home', icon: 'home', label: 'Home' },
+        { path: '/', icon: 'map', label: 'Map' },
+    ];
 
     return (
         <aside ref={sidebarRef} className={`info-sidebar ${isOpen ? 'active' : ''}`} id="sidebar">
@@ -66,6 +66,20 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
                 <button id="close-sidebar" className="icon-btn" onClick={onClose}>
                     <i data-lucide="x"></i>
                 </button>
+            </div>
+
+            {/* Route Navigation */}
+            <div className="sidebar-nav">
+                {navItems.map((item) => (
+                    <button
+                        key={item.path}
+                        className={`sidebar-nav-btn ${location.pathname === item.path ? 'active' : ''}`}
+                        onClick={() => handleNavClick(item.path)}
+                    >
+                        <i data-lucide={item.icon}></i>
+                        <span>{item.label}</span>
+                    </button>
+                ))}
             </div>
 
             <div className="sidebar-content">
@@ -93,20 +107,13 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
                             <h1>Explore the World</h1>
                             <p>Experience OpenStreetMap with a premium interface. Search, save, and discover new places.</p>
                         </div>
-
                         <div className="featured-locations">
                             <h3>Featured Locations</h3>
                             {featuredLocations.map((loc, idx) => (
-                                <div
-                                    key={idx}
-                                    className="location-card"
+                                <div key={idx} className="location-card"
                                     onClick={() => handleLocationClick(loc.lat, loc.lon, {
-                                        lat: loc.lat,
-                                        lng: loc.lon,
-                                        name: loc.name,
-                                        display_name: loc.desc
-                                    })}
-                                >
+                                        lat: loc.lat, lng: loc.lon, name: loc.name, display_name: loc.desc
+                                    })}>
                                     <div className="location-info">
                                         <strong>{loc.name}</strong>
                                         <span>{loc.desc}</span>
@@ -121,18 +128,14 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
                         <button className="back-btn" onClick={() => setView('explore')}>
                             <i data-lucide="arrow-left"></i> Back to Explore
                         </button>
-
                         <h3>Your Saved Places</h3>
                         {savedPlaces.length === 0 ? (
                             <p style={{ marginTop: '20px', textAlign: 'center' }}>No saved places yet. Explore the map to save your favorite spots!</p>
                         ) : (
                             <div className="saved-places-list">
                                 {savedPlaces.map((place, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="saved-place-item"
-                                        onClick={() => handleLocationClick(place.lat, place.lng, place)}
-                                    >
+                                    <div key={idx} className="saved-place-item"
+                                        onClick={() => handleLocationClick(place.lat, place.lng, place)}>
                                         <div className="saved-place-icon">
                                             <i data-lucide={place.list === 'Bucket list' ? 'star' : 'bookmark'}></i>
                                         </div>
