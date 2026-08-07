@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import OfflineManager from './OfflineManager.jsx';
 
 const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
     const navigate = useNavigate();
@@ -52,8 +53,8 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
     };
 
     const navItems = [
-        { path: '/home', icon: 'home', label: 'Home' },
-        { path: '/', icon: 'map', label: 'Map' },
+        { path: '/', icon: 'home', label: 'Home' },
+        { path: '/map', icon: 'map', label: 'Map' },
     ];
 
     return (
@@ -95,13 +96,20 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
                         >
                             <i data-lucide="bookmark" fill={view === 'saved' ? "currentColor" : "none"}></i>
                         </button>
+                        <button
+                            className={`icon-btn ${view === 'offline' ? 'active' : ''}`}
+                            title="Offline Maps"
+                            onClick={() => setView(view === 'offline' ? 'explore' : 'offline')}
+                        >
+                            <i data-lucide="download"></i>
+                        </button>
                         <button className="icon-btn" title="Settings">
                             <i data-lucide="settings"></i>
                         </button>
                     </div>
                 </div>
 
-                {view === 'explore' ? (
+                {view === 'explore' && (
                     <>
                         <div className="welcome-section">
                             <h1>Explore the World</h1>
@@ -123,7 +131,9 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
                             ))}
                         </div>
                     </>
-                ) : (
+                )}
+
+                {view === 'saved' && (
                     <div className="saved-places-view">
                         <button className="back-btn" onClick={() => setView('explore')}>
                             <i data-lucide="arrow-left"></i> Back to Explore
@@ -148,6 +158,16 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
                                 ))}
                             </div>
                         )}
+                    </div>
+                )}
+
+                {view === 'offline' && (
+                    <div className="offline-maps-view">
+                        <button className="back-btn" onClick={() => setView('explore')}>
+                            <i data-lucide="arrow-left"></i> Back to Explore
+                        </button>
+                        <h3>Offline Maps</h3>
+                        <OfflineManager />
                     </div>
                 )}
             </div>

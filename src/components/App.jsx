@@ -18,7 +18,7 @@ const App = () => {
     React.useEffect(() => {
         const appEl = document.getElementById('app');
         if (!appEl) return;
-        const page = location.pathname === '/home' ? 'home' : 'map';
+        const page = location.pathname === '/map' ? 'map' : 'home';
         appEl.setAttribute('data-page', page);
         setTimeout(() => {
             if (window.map) window.map.invalidateSize();
@@ -31,7 +31,7 @@ const App = () => {
         setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 100);
     };
 
-    const isHome = location.pathname === '/home';
+    const isHome = location.pathname !== '/map';
 
     return (
         <>
@@ -44,18 +44,18 @@ const App = () => {
 
             {/* Route-based content */}
             <Routes>
-                {/* / — full-screen map */}
+                {/* / — homepage with mini map */}
                 <Route path="/" element={
+                    <HomePage onMenuToggle={() => setSidebarOpen(true)} />
+                } />
+
+                {/* /map — full-screen map */}
+                <Route path="/map" element={
                     <>
                         <FloatingSearch onMenuToggle={() => setSidebarOpen(true)} />
                         <PlaceDetailsCard />
                         <CustomControls />
                     </>
-                } />
-
-                {/* /home — half map + travel content */}
-                <Route path="/home" element={
-                    <HomePage onMenuToggle={() => setSidebarOpen(true)} />
                 } />
             </Routes>
         </>
