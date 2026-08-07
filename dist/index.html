@@ -28,15 +28,16 @@
     </noscript>
 
     <!-- Tailwind CSS (deferred) -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    <script defer>
+    <script>
+        window.tailwind = window.tailwind || {};
         tailwind.config = {
             darkMode: ['class', '[data-theme="dark"]'],
             corePlugins: {
                 preflight: false, // Prevents Tailwind from resetting existing base styles
             }
-        }
+        };
     </script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
 
     <!-- Google Identity Services -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
