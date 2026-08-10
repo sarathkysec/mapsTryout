@@ -55,6 +55,7 @@ const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
     const navItems = [
         { path: '/', icon: 'home', label: 'Home' },
         { path: '/map', icon: 'map', label: 'Map' },
+        { path: '/login', icon: 'log-in', label: 'Login' },
     ];
 
     return (

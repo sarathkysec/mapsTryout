@@ -1354,4 +1354,553 @@ html,
 .action-icon-btn.delete:hover {
     border-color: #ef4444;
     color: #ef4444;
-}
+}
+
+/* ==========================================================================
+   Login Page & Three.js Shooting Star Background Styles
+   ========================================================================== */
+
+#app[data-page="login"] #map {
+    display: none;
+}
+
+.login-page-container {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0f172a 60%, #020617 100%);
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    overflow: hidden;
+    user-select: none;
+    transition: background 0.5s ease;
+}
+
+[data-theme="light"] .login-page-container {
+    background: radial-gradient(circle at 50% 30%, #312e81 0%, #1e293b 60%, #0f172a 100%);
+}
+
+.login-nav-header {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.login-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.login-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.login-nav-btn i {
+    width: 18px;
+    height: 18px;
+}
+
+.login-card-wrapper {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-glass-card {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 28px;
+    padding: 32px 24px 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 
+                inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.4), 
+                inset 0 -1px 1px 0 rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: loginCardFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .login-glass-card {
+    background: rgba(15, 23, 42, 0.38);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes loginCardFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.login-brand-header {
+    margin-bottom: 24px;
+}
+
+.login-logo-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    border-radius: 18px;
+    background: rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.login-logo-icon i {
+    width: 28px;
+    height: 28px;
+    color: #ffffff;
+}
+
+.login-brand-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login-tagline {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+.login-subtitle {
+    margin-bottom: 20px;
+}
+
+.login-subtitle h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.login-subtitle p {
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+
+.google-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 16px;
+    min-height: 44px;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: #94a3b8;
+    font-size: 0.78rem;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.login-divider span {
+    padding: 0 12px;
+}
+
+.login-action-btn {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+}
+
+.login-action-btn.primary {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(79, 70, 229, 0.9));
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.login-action-btn.secondary {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    margin-top: 10px;
+}
+
+.login-action-btn.guest {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.login-action-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.login-user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.login-user-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(99, 102, 241, 0.6);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    margin-bottom: 12px;
+}
+
+.login-user-profile h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.login-user-email {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.login-actions {
+    width: 100%;
+}
+
+.login-footer-hint {
+    margin-top: 20px;
+    font-size: 0.76rem;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.login-footer-hint i {
+    width: 14px;
+    height: 14px;
+    color: #fbbf24;
+}
+
+@media (max-width: 480px) {
+    .login-glass-card {
+        padding: 24px 18px 20px;
+        border-radius: 24px;
+    }
+}
+
+/* Wanderbound Home Page — High Transparency Glassmorphism */
+.wander-home-page {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('/assets/wanderbound-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 20px 48px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.wander-top-nav {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.wander-icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.wander-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.wander-container {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.wander-logo-box {
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 28px;
+}
+
+.wander-logo-box i {
+    width: 36px;
+    height: 36px;
+    color: #f1f5f9;
+    stroke-width: 1.8;
+}
+
+.wander-title {
+    font-size: 3.1rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.035em;
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.05;
+}
+
+.wander-subtitle {
+    font-size: 1.05rem;
+    color: rgba(226, 232, 240, 0.8);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 36px;
+    max-width: 320px;
+    font-weight: 400;
+}
+
+.wander-auth-section {
+    width: 100%;
+    margin-bottom: 44px;
+}
+
+.wander-btn {
+    width: 100%;
+    height: 54px;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wander-btn-google {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(79, 70, 229, 0.6));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 28px rgba(79, 70, 229, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.wander-btn-google:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.65), rgba(79, 70, 229, 0.75));
+    box-shadow: 0 12px 34px rgba(79, 70, 229, 0.5);
+}
+
+.wander-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 22px 0;
+    width: 100%;
+}
+
+.wander-divider::before,
+.wander-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.wander-divider span {
+    padding: 0 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(226, 232, 240, 0.6);
+}
+
+.wander-btn-manual {
+    background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.wander-btn-manual:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.wander-trending-section {
+    width: 100%;
+}
+
+.wander-trending-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.wander-trending-header h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.trending-icon {
+    width: 26px;
+    height: 26px;
+    color: #34d399;
+    stroke-width: 2.2;
+}
+
+.wander-trending-card {
+    width: 100%;
+    height: 290px;
+    border-radius: 24px;
+    background-image: url('/assets/amalfi_coast_night.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.wander-trending-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.55);
+}
+
+.wander-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 30%, rgba(5, 10, 25, 0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 22px;
+}
+
+.wander-card-badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.wander-badge {
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.wander-card-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    letter-spacing: -0.01em;
+}
+
+

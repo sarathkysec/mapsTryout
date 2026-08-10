@@ -1,0 +1,6 @@
+{
+  "appId": "com.cmaps.app",
+  "appName": "cmaps",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

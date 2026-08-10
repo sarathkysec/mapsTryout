@@ -3,8 +3,8 @@
 # dependencies
 node_modules/
 
-# Expo
-.expo/
+# Capacitor & Web Build
+www/
 dist/
 web-build/
 expo-env.d.ts

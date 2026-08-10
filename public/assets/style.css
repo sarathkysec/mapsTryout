@@ -1354,4 +1354,780 @@ html,
 .action-icon-btn.delete:hover {
     border-color: #ef4444;
     color: #ef4444;
-}
+}
+
+/* ==========================================================================
+   Login Page & Three.js Shooting Star Background Styles
+   ========================================================================== */
+
+#app[data-page="login"] #map {
+    display: none;
+}
+
+.login-page-container {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0f172a 60%, #020617 100%);
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    overflow: hidden;
+    user-select: none;
+    transition: background 0.5s ease;
+}
+
+[data-theme="light"] .login-page-container {
+    background: radial-gradient(circle at 50% 30%, #312e81 0%, #1e293b 60%, #0f172a 100%);
+}
+
+.login-nav-header {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.login-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.login-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.login-nav-btn i {
+    width: 18px;
+    height: 18px;
+}
+
+.login-card-wrapper {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-glass-card {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 28px;
+    padding: 32px 24px 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 
+                inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.4), 
+                inset 0 -1px 1px 0 rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: loginCardFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .login-glass-card {
+    background: rgba(15, 23, 42, 0.38);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes loginCardFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.login-brand-header {
+    margin-bottom: 24px;
+}
+
+.login-logo-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    border-radius: 18px;
+    background: rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.login-logo-icon i {
+    width: 28px;
+    height: 28px;
+    color: #ffffff;
+}
+
+.login-brand-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login-tagline {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+.login-subtitle {
+    margin-bottom: 20px;
+}
+
+.login-subtitle h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.login-subtitle p {
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+
+.google-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 16px;
+    min-height: 44px;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: #94a3b8;
+    font-size: 0.78rem;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.login-divider span {
+    padding: 0 12px;
+}
+
+.login-action-btn {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+}
+
+.login-action-btn.primary {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(79, 70, 229, 0.9));
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.login-action-btn.secondary {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    margin-top: 10px;
+}
+
+.login-action-btn.guest {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.login-action-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.login-user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.login-user-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(99, 102, 241, 0.6);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    margin-bottom: 12px;
+}
+
+.login-user-profile h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.login-user-email {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.login-actions {
+    width: 100%;
+}
+
+.login-footer-hint {
+    margin-top: 20px;
+    font-size: 0.76rem;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.login-footer-hint i {
+    width: 14px;
+    height: 14px;
+    color: #fbbf24;
+}
+
+@media (max-width: 480px) {
+    .login-glass-card {
+        padding: 24px 18px 20px;
+        border-radius: 24px;
+    }
+}
+
+/* Wanderlust Dark Theme — Glassmorphism Design System */
+.wl-page {
+    min-height: 100vh;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    background-color: #0b0d10;
+    color: #ffffff;
+    padding: 16px 16px 85px;
+    font-family: 'Outfit', sans-serif;
+    position: relative;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Base Glassmorphism Card (for non-image cards) */
+.wl-glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.wl-card {
+    border-radius: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.wl-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+.wl-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 4px 16px;
+}
+
+.wl-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.wl-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #93c5fd;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.wl-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.wl-icon-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Search Bar */
+.wl-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 18px;
+}
+
+.wl-search-icon {
+    width: 18px;
+    height: 18px;
+    color: #94a3b8;
+    flex-shrink: 0;
+}
+
+.wl-search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.wl-search-input::placeholder {
+    color: #64748b;
+}
+
+/* Travel Stats Card */
+.wl-stats-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+
+.wl-stats-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.wl-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-green-circle {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+}
+
+.wl-card-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.wl-card-sub {
+    font-size: 0.78rem;
+    color: #94a3b8;
+}
+
+.wl-stats-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.wl-stats-num {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.wl-stats-lbl {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Travel Memories Card */
+.wl-memories-card {
+    background: linear-gradient(135deg, #d946ef 0%, #a855f7 50%, #ec4899 100%);
+    padding: 20px 22px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+}
+
+.wl-memories-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.wl-memories-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.wl-icon-btn-ghost {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-memories-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.wl-memories-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+/* Section Header */
+.wl-section {
+    margin-bottom: 24px;
+}
+
+.wl-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+
+.wl-section-title i {
+    width: 20px;
+    height: 20px;
+    color: #a5b4fc;
+}
+
+/* Friends' Travels */
+.wl-scroll-row {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+}
+
+.wl-scroll-row::-webkit-scrollbar {
+    display: none;
+}
+
+.wl-friend-card {
+    min-width: 250px;
+    max-width: 250px;
+    padding: 12px;
+    flex-shrink: 0;
+}
+
+.wl-friend-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #e2e8f0;
+}
+
+.wl-friend-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.wl-friend-img-box {
+    position: relative;
+    width: 100%;
+    height: 135px;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.wl-friend-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wl-img-pill {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Travel Dispatches */
+.wl-dispatches-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 12px;
+}
+
+.wl-dispatch-card {
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wl-dispatch-tall {
+    height: 310px;
+}
+
+.wl-dispatch-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.88) 100%);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wl-badge-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+}
+
+.wl-play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    align-self: center;
+    margin: auto 0;
+}
+
+.wl-dispatch-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 4px;
+}
+
+.wl-dispatch-desc {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Explore More 2x2 Grid */
+.wl-explore-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.wl-explore-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 22px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #e2e8f0;
+}
+
+.wl-category-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-amber {
+    background: rgba(180, 83, 9, 0.25);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    color: #f59e0b;
+}
+
+.wl-blue {
+    background: rgba(30, 58, 138, 0.35);
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    color: #60a5fa;
+}
+
+.wl-green {
+    background: rgba(6, 78, 59, 0.35);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    color: #34d399;
+}
+
+.wl-red {
+    background: rgba(127, 29, 29, 0.35);
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    color: #f87171;
+}
+
+/* Bottom Nav Bar */
+.wl-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 440px;
+    background: rgba(11, 13, 16, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 12px 12px;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.wl-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-size: 0.7rem;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+}
+
+.wl-nav-item i {
+    width: 18px;
+    height: 18px;
+}
+
+.wl-nav-item.active {
+    background: rgba(37, 99, 235, 0.25);
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+
+
