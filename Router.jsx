@@ -1,14 +1,16 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useNativeState } from 'native-state-react';
 import FloatingSearch from './src/components/FloatingSearch.jsx';
 import Sidebar from './src/components/Sidebar.jsx';
 import PlaceDetailsCard from './src/components/PlaceDetailsCard.jsx';
 import CustomControls from './src/components/CustomControls.jsx';
 import HomePage from './src/pages/HomePage.jsx';
 import LoginPage from './src/pages/LoginPage.jsx';
+import PlaygroundPage from './src/pages/PlaygroundPage.jsx';
 
 const App = () => {
-    const [sidebarOpen, setSidebarOpen] = React.useState(false);
+    const [sidebarOpen, setSidebarOpen] = useNativeState('state.sidebarOpen', false);
     const location = useLocation();
 
     React.useEffect(() => {
@@ -19,7 +21,7 @@ const App = () => {
     React.useEffect(() => {
         const appEl = document.getElementById('app');
         if (!appEl) return;
-        const page = location.pathname === '/map' ? 'map' : (location.pathname === '/login' ? 'login' : 'home');
+        const page = location.pathname === '/map' ? 'map' : (location.pathname === '/login' ? 'login' : (location.pathname === '/playground' ? 'playground' : 'home'));
         appEl.setAttribute('data-page', page);
         setTimeout(() => {
             if (window.map) window.map.invalidateSize();
@@ -34,8 +36,8 @@ const App = () => {
 
     return (
         <>
-            {/* Sidebar — hidden on login page */}
-            {location.pathname !== '/login' && (
+            {/* Sidebar — hidden on login and playground pages */}
+            {location.pathname !== '/login' && location.pathname !== '/playground' && (
                 <Sidebar
                     isOpen={sidebarOpen}
                     onClose={() => setSidebarOpen(false)}
@@ -54,6 +56,9 @@ const App = () => {
                 <Route path="/login" element={
                     <LoginPage onThemeToggle={handleThemeToggle} />
                 } />
+
+                {/* /playground — component test sandbox */}
+                <Route path="/playground" element={<PlaygroundPage />} />
 
                 {/* /map — full-screen map */}
                 <Route path="/map" element={

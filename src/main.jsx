@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { createIcons, icons } from 'lucide';
+import { Root } from 'native-state-react';
 import App from '../Router.jsx';
 import './styles/main.scss';
 import './app.js';
@@ -14,13 +15,20 @@ window.lucide = {
 // Initial icon generation
 createIcons({ icons });
 
+const initialState = {
+    sidebarOpen: false,
+    sidebarView: 'explore',
+};
+
 const rootElement = document.getElementById('root');
 if (rootElement) {
     const root = ReactDOM.createRoot(rootElement);
     root.render(
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <Root initial={initialState}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </Root>
     );
 }
 

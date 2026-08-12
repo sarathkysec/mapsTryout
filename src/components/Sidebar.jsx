@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useNativeState } from 'native-state-react';
 import OfflineManager from './OfflineManager.jsx';
 
 const Sidebar = ({ isOpen, onClose, onThemeToggle }) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [view, setView] = React.useState('explore');
+    const [view, setView] = useNativeState('s.sidebarView', 'explore');
     const [savedPlaces, setSavedPlaces] = React.useState([]);
 
     const featuredLocations = [

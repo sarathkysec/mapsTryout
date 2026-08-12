@@ -1360,7 +1360,8 @@ html,
    Login Page & Three.js Shooting Star Background Styles
    ========================================================================== */
 
-#app[data-page="login"] #map {
+#app[data-page="login"] #map,
+#app[data-page="playground"] #map {
     display: none;
 }
 

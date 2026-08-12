@@ -24,6 +24,7 @@
   "dependencies": {
     "country-flag-emoji-polyfill": "^0.1.8",
     "leaflet": "^1.9.4",
+    "native-state-react": "^3.1.9",
     "react-router-dom": "^7.17.0",
     "three": "^0.185.1"
   },
