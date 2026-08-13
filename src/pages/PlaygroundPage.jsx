@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useNativeState } from 'native-state-react';
+import PacificMap from '../components/PacificMap';
 
 const PlaygroundPage = () => {
     const navigate = useNavigate();
@@ -104,6 +105,7 @@ const PlaygroundPage = () => {
                 {/* Components Tab */}
                 {activeTab === 'components' && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                        <PacificMap />
                         <div style={{
                             background: 'rgba(255,255,255,0.05)',
                             border: '1px solid rgba(255,255,255,0.1)',

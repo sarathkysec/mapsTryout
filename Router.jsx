@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useNativeState } from 'native-state-react';
-import FloatingSearch from './src/components/FloatingSearch.jsx';
-import Sidebar from './src/components/Sidebar.jsx';
-import PlaceDetailsCard from './src/components/PlaceDetailsCard.jsx';
-import CustomControls from './src/components/CustomControls.jsx';
 import HomePage from './src/pages/HomePage.jsx';
-import LoginPage from './src/pages/LoginPage.jsx';
-import PlaygroundPage from './src/pages/PlaygroundPage.jsx';
+
+const Sidebar = lazy(() => import('./src/components/Sidebar.jsx'));
+const FloatingSearch = lazy(() => import('./src/components/FloatingSearch.jsx'));
+const PlaceDetailsCard = lazy(() => import('./src/components/PlaceDetailsCard.jsx'));
+const CustomControls = lazy(() => import('./src/components/CustomControls.jsx'));
+const LoginPage = lazy(() => import('./src/pages/LoginPage.jsx'));
+const PlaygroundPage = lazy(() => import('./src/pages/PlaygroundPage.jsx'));
 
 const App = () => {
     const [sidebarOpen, setSidebarOpen] = useNativeState('state.sidebarOpen', false);
@@ -35,7 +36,7 @@ const App = () => {
     };
 
     return (
-        <>
+        <Suspense fallback={null}>
             {/* Sidebar — hidden on login and playground pages */}
             {location.pathname !== '/login' && location.pathname !== '/playground' && (
                 <Sidebar
@@ -69,7 +70,7 @@ const App = () => {
                     </>
                 } />
             </Routes>
-        </>
+        </Suspense>
     );
 };
 
