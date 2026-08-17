@@ -14,11 +14,18 @@ const HomePage = () => {
         <div className="wl-page">
             {/* Header */}
             <header className="wl-header">
-                <img src="/assets/wanderlust_avatar.png" alt="Profile" className="wl-avatar" />
-                <h1 className="wl-title">Wanderlust</h1>
-                <button className="wl-icon-btn" title="Notifications">
-                    <i data-lucide="bell"></i>
-                </button>
+                <div className="wl-header-left">
+                    <img src="/assets/wanderlust_avatar.png" alt="Profile" className="wl-avatar" />
+                    <h1 className="wl-title">Wanderlust</h1>
+                </div>
+                <div className="wl-header-actions">
+                    <button className="wl-icon-btn" title="Add">
+                        <i data-lucide="plus"></i>
+                    </button>
+                    <button className="wl-icon-btn" title="Notifications">
+                        <i data-lucide="bell"></i>
+                    </button>
+                </div>
             </header>
 
             {/* Search Bar */}
@@ -31,7 +38,7 @@ const HomePage = () => {
             <div className="wl-card wl-glass-card wl-stats-card">
                 <div className="wl-stats-left">
                     <div className="wl-icon-circle wl-green-circle">
-                        <i data-lucide="send"></i>
+                        <i data-lucide="plane"></i>
                     </div>
                     <div>
                         <div className="wl-card-heading">Travel Stats</div>
@@ -95,21 +102,28 @@ const HomePage = () => {
                     <span>Travel Dispatches</span>
                 </div>
                 <div className="wl-dispatches-grid">
-                    <div className="wl-card wl-dispatch-card" style={{ backgroundImage: `url('/assets/wanderlust_roadtrip.png')` }}>
-                        <div className="wl-dispatch-overlay">
-                            <span className="wl-badge-tag">STORY</span>
-                            <h3 className="wl-dispatch-title">The Ultimate West Coast Road Trip</h3>
+                    <div className="wl-dispatches-left">
+                        <div className="wl-card wl-dispatch-card" style={{ backgroundImage: `url('/assets/wanderlust_roadtrip.png')` }}>
+                            <div className="wl-dispatch-overlay">
+                                <span className="wl-badge-tag">STORY</span>
+                                <h3 className="wl-dispatch-title">The Ultimate West Coast Road Trip</h3>
+                            </div>
+                        </div>
+                        <div className="wl-card wl-dispatch-card" style={{ backgroundImage: `url('/assets/wanderlust_roadtrip.png')` }}>
+                            <div className="wl-dispatch-overlay">
+                                <span className="wl-badge-tag">STORY</span>
+                                <h3 className="wl-dispatch-title">The Ultimate West Coast Road Trip</h3>
+                            </div>
                         </div>
                     </div>
                     <div className="wl-card wl-dispatch-card wl-dispatch-tall" style={{ backgroundImage: `url('/assets/wanderlust_tokyo.png')` }}>
                         <div className="wl-dispatch-overlay">
-                            <span className="wl-badge-tag">VIDEO EXPERIENCE</span>
+                            <span className="wl-badge-tag">VIDEO</span>
                             <div className="wl-play-btn">
                                 <i data-lucide="play"></i>
                             </div>
                             <div>
                                 <h3 className="wl-dispatch-title">A Taste of Tokyo: Street Food Guide</h3>
-                                <p className="wl-dispatch-desc">Join us as we explore the bustling alleys of Shinjuku and sample the best local...</p>
                             </div>
                         </div>
                     </div>
@@ -125,18 +139,13 @@ const HomePage = () => {
                 <div className="wl-explore-grid">
                     <div className="wl-card wl-glass-card wl-explore-card" onClick={() => navigate('/map')}>
                         <div className="wl-category-circle wl-amber">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="13.5" cy="4" r="2" />
-                                <path d="m9 20 2.5-7 2.5 3 2.5-3" />
-                                <path d="M7 10.5 10 9l3.5 1.5L16 9" />
-                                <path d="M17 12v9" />
-                            </svg>
+                            <i data-lucide="footprints"></i>
                         </div>
                         <span>Adventure</span>
                     </div>
                     <div className="wl-card wl-glass-card wl-explore-card" onClick={() => navigate('/map')}>
                         <div className="wl-category-circle wl-blue">
-                            <i data-lucide="leaf"></i>
+                            <i data-lucide="flower-2"></i>
                         </div>
                         <span>Wellness</span>
                     </div>
@@ -148,7 +157,7 @@ const HomePage = () => {
                     </div>
                     <div className="wl-card wl-glass-card wl-explore-card" onClick={() => navigate('/map')}>
                         <div className="wl-category-circle wl-red">
-                            <i data-lucide="landmark"></i>
+                            <i data-lucide="home"></i>
                         </div>
                         <span>Culture</span>
                     </div>
@@ -158,7 +167,9 @@ const HomePage = () => {
             {/* Bottom Nav Bar */}
             <nav className="wl-bottom-nav">
                 <button className="wl-nav-item active">
-                    <i data-lucide="home"></i>
+                    <div className="wl-nav-active-pill">
+                        <i data-lucide="home"></i>
+                    </div>
                     <span>Home</span>
                 </button>
                 <button className="wl-nav-item" onClick={() => navigate('/map')}>
@@ -179,5 +190,6 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 

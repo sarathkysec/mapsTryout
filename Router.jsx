@@ -2,6 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useNativeState } from 'native-state-react';
 import HomePage from './src/pages/HomePage.jsx';
+import Loader from './src/components/Loader.jsx';
+
 
 const Sidebar = lazy(() => import('./src/components/Sidebar.jsx'));
 const FloatingSearch = lazy(() => import('./src/components/FloatingSearch.jsx'));
@@ -36,7 +38,7 @@ const App = () => {
     };
 
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader size='2xl' />}>
             {/* Sidebar — hidden on login and playground pages */}
             {location.pathname !== '/login' && location.pathname !== '/playground' && (
                 <Sidebar
