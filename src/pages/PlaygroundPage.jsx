@@ -5,6 +5,7 @@ import PacificMap from '../components/PacificMap';
 import Loader from '../components/Loader';
 import ShinyText from '../components/ShinyText';
 import SplashCursor from '../components/SplashCursor';
+import GlassSurface from '../components/GlassSurface';
 
 const PlaygroundPage = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const PlaygroundPage = () => {
     const [shinyInput, setShinyInput] = useState('✨ Shiny Text Effect');
     const [shinySpeed, setShinySpeed] = useState(2);
     const [shinyYoyo, setShinyYoyo] = useState(false);
-    const [showSplash, setShowSplash] = useState(false);
+    const [showSplash, setShowSplash] = useState(true);
 
     useEffect(() => {
         if (window.lucide) window.lucide.createIcons();
@@ -25,8 +26,8 @@ const PlaygroundPage = () => {
     const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
 
     return (
-        <div style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', zIndex: 9999, background: '#0f172a', color: '#f8fafc', overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
-            {showSplash && <SplashCursor />}
+        <div style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', zIndex: 9999, background: 'url("https://img.magnific.com/premium-vector/abstract-element-light-background-digital-tech_991099-13.jpg?semt=ais_test_b&w=740&q=80")', color: '#f8fafc', overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            {showSplash && <SplashCursor auto={true} />}
             {showOverlay && (
                 <div onClick={() => setShowOverlay(false)} style={{ cursor: 'pointer' }}>
                     <Loader overlay glass label="Click anywhere to close overlay loader" size="xl" />
@@ -54,7 +55,7 @@ const PlaygroundPage = () => {
                 {activeTab === 'components' && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                         {/* Globe Loader Showcase */}
-                        <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '16px' }}>
+                        <GlassSurface style={{ border: '1px solid rgb(255 255 255 / 20%)' }} width="100%" height="auto" borderRadius={16}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                                 <h4 style={{ margin: 0 }}>🌍 Animated Globe Loader</h4>
                                 <button onClick={() => setShowOverlay(true)} style={{ background: '#3b82f6', border: 'none', color: '#fff', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}>
@@ -79,12 +80,14 @@ const PlaygroundPage = () => {
                             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '12px' }}>
                                 <Loader size={customSize} label={`Custom ${customSize}px`} />
                             </div>
-                        </div>
+                        </GlassSurface>
 
-                        <PacificMap />
+                        <GlassSurface style={{ border: '1px solid rgb(255 255 255 / 20%)' }} width="100%" height="auto" borderRadius={16}>
+                            <PacificMap />
+                        </GlassSurface>
 
                         {/* ShinyText Showcase Card */}
-                        <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '16px' }}>
+                        <GlassSurface style={{ border: '1px solid rgb(255 255 255 / 20%)' }} width="100%" height="auto" borderRadius={16}>
                             <h4 style={{ margin: '0 0 12px 0' }}>✨ ShinyText Effect (React Bits)</h4>
                             <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px', borderRadius: '10px', textAlign: 'center', marginBottom: '14px', fontSize: '1.4rem', fontWeight: 700 }}>
                                 <ShinyText text={shinyInput || '✨ Shiny Text'} speed={shinySpeed} yoyo={shinyYoyo} pauseOnHover={true} />
@@ -106,10 +109,10 @@ const PlaygroundPage = () => {
                                     <label htmlFor="shiny-yoyo" style={{ cursor: 'pointer' }}>Yoyo Effect (reverse animation loop)</label>
                                 </div>
                             </div>
-                        </div>
+                        </GlassSurface>
 
                         {/* SplashCursor Showcase Card */}
-                        <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '16px' }}>
+                        <GlassSurface style={{ border: '1px solid rgb(255 255 255 / 20%)' }} width="100%" height="auto" borderRadius={16}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <h4 style={{ margin: 0 }}>💧 SplashCursor (React Bits)</h4>
                                 <button
@@ -131,18 +134,18 @@ const PlaygroundPage = () => {
                             <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: '8px 0 0 0' }}>
                                 {showSplash ? '✨ Move your pointer or swipe on screen to see WebGL fluid splats!' : 'Click Enable Fluid to activate full-screen WebGL fluid interaction.'}
                             </p>
-                        </div>
+                        </GlassSurface>
 
-                        <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '16px' }}>
+                        <GlassSurface style={{ border: '1px solid rgb(255 255 255 / 20%)' }} width="100%" height="auto" borderRadius={16}>
                             <h4 style={{ margin: '0 0 10px 0' }}>Input Field Test</h4>
                             <input type="text" placeholder="Type something..." value={testInput} onChange={(e) => setTestInput(e.target.value)} style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(0,0,0,0.3)', color: '#fff', boxSizing: 'border-box' }} />
                             {testInput && <p style={{ margin: '8px 0 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>Output: <strong>{testInput}</strong></p>}
-                        </div>
+                        </GlassSurface>
                     </div>
                 )}
 
                 {activeTab === 'state' && (
-                    <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '16px' }}>
+                    <GlassSurface style={{ border: '1px solid rgb(255 255 255 / 20%)' }} width="100%" height="auto" borderRadius={16}>
                         <h4 style={{ margin: '0 0 8px 0' }}>useNativeState Counter</h4>
                         <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: '0 0 14px 0' }}>Key: <code>state.playgroundCounter</code></p>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -150,7 +153,7 @@ const PlaygroundPage = () => {
                             <span style={{ fontSize: '1.4rem', fontWeight: 700 }}>{counter}</span>
                             <button onClick={() => setCounter(counter + 1)} style={{ width: '40px', height: '40px', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '1.2rem', cursor: 'pointer' }}>+</button>
                         </div>
-                    </div>
+                    </GlassSurface>
                 )}
             </div>
         </div>

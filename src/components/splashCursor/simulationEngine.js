@@ -45,9 +45,9 @@ export function initFluidSimulation(canvas, config) {
     gl.disable(gl.BLEND);
 
     dye = !dye ? fboUtils.createDoubleFBO(gl, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering)
-               : fboUtils.resizeDoubleFBO(gl, copyProgram, blit, dye, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
+      : fboUtils.resizeDoubleFBO(gl, copyProgram, blit, dye, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
     velocity = !velocity ? fboUtils.createDoubleFBO(gl, simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering)
-                         : fboUtils.resizeDoubleFBO(gl, copyProgram, blit, velocity, simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
+      : fboUtils.resizeDoubleFBO(gl, copyProgram, blit, velocity, simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
     divergence = fboUtils.createFBO(gl, simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
     curl = fboUtils.createFBO(gl, simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
     pressure = fboUtils.createDoubleFBO(gl, simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
@@ -56,7 +56,7 @@ export function initFluidSimulation(canvas, config) {
   displayMaterial.setKeywords(config.SHADING ? ['SHADING'] : []);
   initFramebuffers();
 
-  let lastUpdateTime = Date.now(), colorUpdateTimer = 0.0;
+  let lastUpdateTime = Date.now(), colorUpdateTimer = 0.0, autoTimer = 0.0;
 
   function updateFrame() {
     if (!isActive) return;
@@ -66,6 +66,16 @@ export function initFluidSimulation(canvas, config) {
 
     let width = utils.scaleByPixelRatio(canvas.clientWidth), height = utils.scaleByPixelRatio(canvas.clientHeight);
     if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; initFramebuffers(); }
+
+    if (config.auto) {
+      autoTimer += dt * 1000;
+      if (autoTimer > 350) {
+        autoTimer = 0;
+        let rx = 0.15 + Math.random() * 0.7;
+        let ry = 0.2 + Math.random() * 0.6;
+        splatMultiColor(rx, ry, (Math.random() - 0.5) * config.SPLAT_FORCE, (Math.random() - 0.5) * config.SPLAT_FORCE, 3);
+      }
+    }
 
     colorUpdateTimer += dt * config.COLOR_UPDATE_SPEED;
     if (colorUpdateTimer >= 1) {
@@ -106,6 +116,19 @@ export function initFluidSimulation(canvas, config) {
     blit(velocity.write); velocity.swap();
     gl.uniform1i(splatProgram.uniforms.uTarget, dye.read.attach(0)); gl.uniform3f(splatProgram.uniforms.color, color.r, color.g, color.b);
     blit(dye.write); dye.swap();
+  }
+
+  function splatMultiColor(x, y, baseDx, baseDy, count = 3) {
+    for (let i = 0; i < count; i++) {
+      const offsetX = (Math.random() - 0.5) * 0.03;
+      const offsetY = (Math.random() - 0.5) * 0.03;
+      const angle = (i / count) * Math.PI * 2 + (Math.random() * 0.5);
+      const force = config.SPLAT_FORCE * (0.6 + Math.random() * 0.4);
+      const dx = (baseDx || 0) + Math.cos(angle) * force;
+      const dy = (baseDy || 0) + Math.sin(angle) * force;
+      const col = utils.generateColor(true, config.COLOR);
+      splat(x + offsetX, y + offsetY, dx, dy, { r: col.r * 12, g: col.g * 12, b: col.b * 12 });
+    }
   }
 
   function handleMouseDown(e) {

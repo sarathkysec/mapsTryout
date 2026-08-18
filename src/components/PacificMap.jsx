@@ -66,7 +66,7 @@ const PacificMap = () => {
                     height: '240px',
                     borderRadius: '8px',
                     overflow: 'hidden',
-                    background: '#020617'
+                    background: 'rgb(2 6 23 / 24%)'
                 }}
             />
         </div>
