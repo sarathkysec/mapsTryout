@@ -24,6 +24,8 @@
   "dependencies": {
     "@amcharts/amcharts5": "^5.20.1",
     "@amcharts/amcharts5-geodata": "^5.1.6",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/status-bar": "^8.0.3",
     "country-flag-emoji-polyfill": "^0.1.8",
     "leaflet": "^1.9.4",
     "motion": "^13.1.0",

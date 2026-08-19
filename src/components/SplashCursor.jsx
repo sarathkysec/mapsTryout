@@ -2,23 +2,25 @@ import React, { useEffect, useRef } from 'react';
 import { initFluidSimulation } from './splashCursor/simulationEngine';
 
 function SplashCursor({
-  SIM_RESOLUTION = 128,
-  DYE_RESOLUTION = 1440,
-  CAPTURE_RESOLUTION = 512,
-  DENSITY_DISSIPATION = 3.5,
-  VELOCITY_DISSIPATION = 2,
+  SIM_RESOLUTION = 256,
+  DYE_RESOLUTION = 720,
+  CAPTURE_RESOLUTION = 256,
+  DENSITY_DISSIPATION = 0.2,
+  VELOCITY_DISSIPATION = 0.2,
   PRESSURE = 0.1,
-  PRESSURE_ITERATIONS = 20,
+  PRESSURE_ITERATIONS = 40,
   CURL = 3,
   SPLAT_RADIUS = 0.2,
   SPLAT_FORCE = 6000,
   SHADING = true,
-  COLOR_UPDATE_SPEED = 10,
+  COLOR_UPDATE_SPEED = 30,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
   TRANSPARENT = true,
   RAINBOW_MODE = true,
   COLOR = '#ff0000',
-  auto = false
+  TIMER_DELAY = 5000,
+  auto = false,
+  styles = {}
 }) {
   const canvasRef = useRef(null);
 
@@ -43,6 +45,7 @@ function SplashCursor({
       TRANSPARENT,
       RAINBOW_MODE,
       COLOR,
+      TIMER_DELAY,
       auto
     });
 
@@ -78,7 +81,8 @@ function SplashCursor({
         zIndex: -1,
         pointerEvents: 'none',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        ...styles
       }}
     >
       <canvas

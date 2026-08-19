@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@capacitor/android": "^7.0.1",
+    "@capacitor/app": "^8.1.1",
     "@capacitor/core": "^7.0.1",
-    "@capacitor/ios": "^7.0.1"
+    "@capacitor/ios": "^7.0.1",
+    "@capacitor/status-bar": "^7.0.1"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.0.1"

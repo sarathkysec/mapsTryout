@@ -18,6 +18,7 @@ createIcons({ icons });
 const initialState = {
     sidebarOpen: false,
     sidebarView: 'explore',
+    toastMessage: '',
 };
 
 const rootElement = document.getElementById('root');

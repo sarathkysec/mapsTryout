@@ -5,6 +5,8 @@ import HomePage from './src/pages/HomePage.jsx';
 import Loader from './src/components/Loader.jsx';
 
 
+import BackButtonHandler from './src/components/BackButtonHandler.jsx';
+
 const Sidebar = lazy(() => import('./src/components/Sidebar.jsx'));
 const FloatingSearch = lazy(() => import('./src/components/FloatingSearch.jsx'));
 const PlaceDetailsCard = lazy(() => import('./src/components/PlaceDetailsCard.jsx'));
@@ -39,6 +41,7 @@ const App = () => {
 
     return (
         <Suspense fallback={<Loader size='2xl' />}>
+            <BackButtonHandler />
             {/* Sidebar — hidden on login and playground pages */}
             {location.pathname !== '/login' && location.pathname !== '/playground' && (
                 <Sidebar

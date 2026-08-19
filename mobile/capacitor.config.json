@@ -2,5 +2,12 @@
   "appId": "com.cmaps.app",
   "appName": "cmaps",
   "webDir": "www",
-  "bundledWebRuntime": false
+  "bundledWebRuntime": false,
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": false,
+      "style": "DARK",
+      "backgroundColor": "#0b0d10"
+    }
+  }
 }

@@ -69,7 +69,7 @@ export function initFluidSimulation(canvas, config) {
 
     if (config.auto) {
       autoTimer += dt * 1000;
-      if (autoTimer > 350) {
+      if (autoTimer > (config?.TIMER_DELAY || 350)) {
         autoTimer = 0;
         let rx = 0.15 + Math.random() * 0.7;
         let ry = 0.2 + Math.random() * 0.6;
