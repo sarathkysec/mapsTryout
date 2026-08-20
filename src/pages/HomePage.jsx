@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import SplashCursor from '../components/SplashCursor';
+import BottomNav from '../components/BottomNav';
 import { StatusBar } from '@capacitor/status-bar';
 
 const HomePage = () => {
@@ -23,14 +24,20 @@ const HomePage = () => {
         initStatusBar();
     }, []);
 
-    const glassStyle = { border: '1px solid rgba(255, 255, 255, 0.18)' };
-    const bgStyle = { background: 'linear-gradient(180deg, rgb(11 13 16 / 65%) 0%, rgba(11, 13, 16, 0.88) 100%),url(/assets/home/im' + (Math.floor(Math.random() * 4) + 1) + '.jpg) center / cover no-repeat fixed #0b0d10' };
+    const bgStyle = {
+        background: 'linear-gradient(180deg, rgb(11 13 16 / 65%) 0%, rgba(11, 13, 16, 0.88) 100%),url(/assets/home/im' + (Math.floor(Math.random() * 4) + 1) + '.jpg) center / cover no-repeat fixed #0b0d10'
+    };
 
     return (
         <div className="wl-page" style={bgStyle}>
-            <Header opacity={0.55} onAvatarClick={() => navigate('/login')} onNotificationClick={() => navigate('/playground')} />
+            <Header
+                opacity={0.55}
+                avatarUrl="/assets/profile_avatar.jpg"
+                onAvatarClick={() => navigate('/profile')}
+                onNotificationClick={() => navigate('/playground')}
+            />
             <SplashCursor styles={{ 'z-index': 0 }} auto={false} />
-            <div className='wl-body' style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div className="wl-body" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
                 {/* Search Bar */}
                 <div className="wl-search-bar">
@@ -168,36 +175,11 @@ const HomePage = () => {
                     </div>
                 </section>
 
-
-
             </div>
 
-            {/* Bottom Nav Bar */}
-            <nav className="wl-bottom-nav">
-                <button className="wl-nav-item active">
-                    <div className="wl-nav-active-pill">
-                        <i data-lucide="home"></i>
-                    </div>
-                    <span>Home</span>
-                </button>
-                <button className="wl-nav-item" onClick={() => navigate('/map')}>
-                    <i data-lucide="compass"></i>
-                    <span>Explore</span>
-                </button>
-                <button className="wl-nav-item" onClick={() => navigate('/map')}>
-                    <i data-lucide="calendar"></i>
-                    <span>Plan</span>
-                </button>
-                <button className="wl-nav-item" onClick={() => navigate('/login')}>
-                    <i data-lucide="user"></i>
-                    <span>Profile</span>
-                </button>
-            </nav>
+            <BottomNav active="home" />
         </div>
     );
 };
 
 export default HomePage;
-
-
-

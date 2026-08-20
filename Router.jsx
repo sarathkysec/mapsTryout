@@ -12,6 +12,7 @@ const FloatingSearch = lazy(() => import('./src/components/FloatingSearch.jsx'))
 const PlaceDetailsCard = lazy(() => import('./src/components/PlaceDetailsCard.jsx'));
 const CustomControls = lazy(() => import('./src/components/CustomControls.jsx'));
 const LoginPage = lazy(() => import('./src/pages/LoginPage.jsx'));
+const ProfilePage = lazy(() => import('./src/pages/ProfilePage.jsx'));
 const PlaygroundPage = lazy(() => import('./src/pages/PlaygroundPage.jsx'));
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
     React.useEffect(() => {
         const appEl = document.getElementById('app');
         if (!appEl) return;
-        const page = location.pathname === '/map' ? 'map' : (location.pathname === '/login' ? 'login' : (location.pathname === '/playground' ? 'playground' : 'home'));
+        const page = location.pathname === '/map' ? 'map' : (location.pathname === '/login' ? 'login' : (location.pathname === '/profile' ? 'profile' : (location.pathname === '/playground' ? 'playground' : 'home')));
         appEl.setAttribute('data-page', page);
         setTimeout(() => {
             if (window.map) window.map.invalidateSize();
@@ -42,8 +43,8 @@ const App = () => {
     return (
         <Suspense fallback={<Loader size='2xl' />}>
             <BackButtonHandler />
-            {/* Sidebar — hidden on login and playground pages */}
-            {location.pathname !== '/login' && location.pathname !== '/playground' && (
+            {/* Sidebar — hidden on login, profile and playground pages */}
+            {location.pathname !== '/login' && location.pathname !== '/profile' && location.pathname !== '/playground' && (
                 <Sidebar
                     isOpen={sidebarOpen}
                     onClose={() => setSidebarOpen(false)}
@@ -57,6 +58,9 @@ const App = () => {
                 <Route path="/" element={
                     <HomePage onMenuToggle={() => setSidebarOpen(true)} />
                 } />
+
+                {/* /profile — user portfolio/profile page */}
+                <Route path="/profile" element={<ProfilePage />} />
 
                 {/* /login — login page with Three.js shooting star background */}
                 <Route path="/login" element={

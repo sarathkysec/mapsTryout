@@ -828,17 +828,18 @@ html,
    ============================================================ */
 
 /* Allow the #root to scroll vertically on home page */
-#app[data-page="home"] {
+#app[data-page="home"],
+#app[data-page="profile"] {
     overflow: hidden;
 }
 
 /* Hide the map entirely on the home page */
-#app[data-page="home"] #map {
+[id="app"]:not([data-page="map"]) #map {
     display: none !important;
 }
 
 /* #root covers the full screen on home page, sits above the map layer */
-#app[data-page="home"] #root {
+[id="app"]:not([data-page="map"]) #root {
     position: absolute;
     inset: 0;
     z-index: 10;
@@ -848,7 +849,7 @@ html,
     scrollbar-width: none;
 }
 
-#app[data-page="home"] #root::-webkit-scrollbar {
+[id="app"]:not([data-page="map"]) #root::-webkit-scrollbar {
     display: none;
 }
 
@@ -2008,7 +2009,7 @@ html,
     position: relative;
     overflow: hidden;
     height: 180px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgb(138 181 145 / 55%);
 }
 
 .wl-dispatch-tall {
@@ -2165,4 +2166,275 @@ html,
     background: transparent;
     color: #60a5fa;
     font-weight: 600;
+}
+
+/* Profile Page Custom Styles */
+.wl-profile-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 16px 90px;
+}
+
+.wl-profile-main-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 20px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+}
+
+.wl-profile-avatar-wrapper {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.wl-profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wl-profile-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2px;
+    letter-spacing: -0.02em;
+}
+
+.wl-profile-handle {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 14px;
+}
+
+.wl-profile-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.wl-profile-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.wl-profile-meta-item i {
+    width: 15px;
+    height: 15px;
+    color: #94a3b8;
+}
+
+.wl-profile-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.wl-profile-info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    min-height: 125px;
+    border-radius: 20px;
+}
+
+.wl-profile-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.wl-arrow-icon {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wl-email-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #0b0d10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-email-circle i {
+    width: 18px;
+    height: 18px;
+}
+
+.wl-fb-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #0b0d10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-fb-circle i {
+    width: 18px;
+    height: 18px;
+}
+
+.wl-profile-info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 12px;
+}
+
+.wl-profile-text-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.wl-profile-text-sub {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.wl-profile-map-row {
+    display: grid;
+    grid-template-columns: 185px 1fr;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.wl-profile-pillar {
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wl-profile-map-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #14171a;
+}
+
+.wl-profile-list-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 12px;
+}
+
+.wl-profile-list-card {
+    border-radius: 22px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    min-height: 210px;
+}
+
+.wl-profile-list-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.82) 100%);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wl-list-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #0b0d10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-list-circle i {
+    width: 18px;
+    height: 18px;
+}
+
+.wl-profile-list-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 6px 0 4px;
+}
+
+.wl-profile-ol {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.9);
+    padding-left: 16px;
+    line-height: 1.35;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+}
+
+.wl-profile-thumb-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.wl-profile-thumb-card {
+    flex: 1;
+    min-height: 98px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+.wl-thumb-pill {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.wl-profile-insta-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    min-height: 110px;
+    border-radius: 20px;
 }
