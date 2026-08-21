@@ -19,7 +19,12 @@ const ProfileMap = () => {
                 panY: 'translateY',
                 projection: am5map.geoMercator(),
                 rotationX: -160,
-                homeZoomLevel: 1.1
+                homeZoomLevel: 1.1,
+                // panX: "none",
+                // panY: "none",
+                wheelX: "none",
+                wheelY: "none",
+                pinchZoom: false
             })
         );
 

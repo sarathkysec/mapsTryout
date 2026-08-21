@@ -62,7 +62,7 @@ const ProfilePage = () => {
                 </div>
 
                 {/* 2-Column Grid: Budget Backpacking + Facebook */}
-                <div className="wl-profile-grid-2">
+                {/* <div className="wl-profile-grid-2">
                     <div className="wl-card wl-glass-card wl-profile-info-card">
                         <div className="wl-profile-card-top">
                             <div className="wl-email-circle">
@@ -88,11 +88,15 @@ const ProfilePage = () => {
                             <div className="wl-profile-text-sub">@m_aqsam</div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Middle Row: Pillar + World Map */}
                 <div className="wl-profile-map-row">
-                    <div className="wl-card wl-glass-card wl-profile-pillar"></div>
+                    <div className="wl-card wl-glass-card wl-profile-pillar">
+                        Places:
+                        Countries:
+                        Wishlist:
+                    </div>
                     <div className="wl-card wl-glass-card wl-profile-map-card">
                         <ProfileMap />
                     </div>
