@@ -1,4 +1,5 @@
 import React from 'react';
+import './loader.css';
 
 const SIZE_MAP = {
     xs: 24,
@@ -67,31 +68,7 @@ const Loader = ({
             className={`globe-loader ${className}`.trim()}
             style={containerStyle}
         >
-            <div
-                style={{
-                    width: dimension,
-                    height: dimension,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    position: 'relative',
-                    flexShrink: 0
-                }}
-            >
-                <img
-                    src={src}
-                    alt={label || ariaLabel}
-                    style={{
-                        // width: '100%',
-                        // height: '100%',
-                        objectFit: 'contain',
-                        pointerEvents: 'none',
-                        userSelect: 'none',
-                        filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.35))',
-                        ...imgStyle
-                    }}
-                />
-            </div>
+            <div class="loader"></div>
             {label && (
                 <span
                     style={{

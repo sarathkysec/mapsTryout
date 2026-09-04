@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useNativeState } from 'native-state-react';
 import HomePage from './src/pages/HomePage.jsx';
-import Loader from './src/components/Loader.jsx';
+import Loader from './src/components/Loader/index.jsx';
 
 
 import BackButtonHandler from './src/components/BackButtonHandler.jsx';
