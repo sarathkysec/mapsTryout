@@ -833,13 +833,13 @@ html,
     overflow: hidden;
 }
 
-/* Hide the map entirely on the home page */
-[id="app"]:not([data-page="map"]) #map {
+/* Hide the map on pages other than map and explore */
+[id="app"]:not([data-page="map"]):not([data-page="explore"]) #map {
     display: none !important;
 }
 
-/* #root covers the full screen on home page, sits above the map layer */
-[id="app"]:not([data-page="map"]) #root {
+/* #root covers the full screen on home/profile/login pages */
+[id="app"]:not([data-page="map"]):not([data-page="explore"]) #root {
     position: absolute;
     inset: 0;
     z-index: 10;
@@ -849,7 +849,16 @@ html,
     scrollbar-width: none;
 }
 
-[id="app"]:not([data-page="map"]) #root::-webkit-scrollbar {
+/* Explore page #root overlay rules */
+[id="app"][data-page="explore"] #root {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+[id="app"]:not([data-page="map"]):not([data-page="explore"]) #root::-webkit-scrollbar {
     display: none;
 }
 
@@ -2127,6 +2136,7 @@ html,
     padding: 8px 12px 10px;
     z-index: 100;
     box-sizing: border-box;
+    pointer-events: auto;
 }
 
 .wl-nav-item {
@@ -2321,7 +2331,7 @@ html,
 
 .wl-profile-map-row {
     display: grid;
-    grid-template-columns: 46px 1fr;
+    grid-template-columns: 40% 1fr;
     gap: 12px;
     align-items: stretch;
 }

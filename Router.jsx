@@ -14,6 +14,7 @@ const CustomControls = lazy(() => import('./src/components/CustomControls.jsx'))
 const LoginPage = lazy(() => import('./src/pages/LoginPage.jsx'));
 const ProfilePage = lazy(() => import('./src/pages/ProfilePage.jsx'));
 const PlaygroundPage = lazy(() => import('./src/pages/PlaygroundPage.jsx'));
+const ExplorePage = lazy(() => import('./src/pages/ExplorePage.jsx'));
 
 const App = () => {
     const [sidebarOpen, setSidebarOpen] = useNativeState('state.sidebarOpen', false);
@@ -27,7 +28,7 @@ const App = () => {
     React.useEffect(() => {
         const appEl = document.getElementById('app');
         if (!appEl) return;
-        const page = location.pathname === '/map' ? 'map' : (location.pathname === '/login' ? 'login' : (location.pathname === '/profile' ? 'profile' : (location.pathname === '/playground' ? 'playground' : 'home')));
+        const page = location.pathname === '/map' ? 'map' : (location.pathname === '/explore' ? 'explore' : (location.pathname === '/login' ? 'login' : (location.pathname === '/profile' ? 'profile' : (location.pathname === '/playground' ? 'playground' : 'home'))));
         appEl.setAttribute('data-page', page);
         setTimeout(() => {
             if (window.map) window.map.invalidateSize();
@@ -43,8 +44,8 @@ const App = () => {
     return (
         <Suspense fallback={<Loader size='2xl' />}>
             <BackButtonHandler />
-            {/* Sidebar — hidden on login, profile and playground pages */}
-            {location.pathname !== '/login' && location.pathname !== '/profile' && location.pathname !== '/playground' && (
+            {/* Sidebar — hidden on login, profile, playground, and explore pages */}
+            {location.pathname !== '/login' && location.pathname !== '/profile' && location.pathname !== '/playground' && location.pathname !== '/explore' && (
                 <Sidebar
                     isOpen={sidebarOpen}
                     onClose={() => setSidebarOpen(false)}
@@ -61,6 +62,9 @@ const App = () => {
 
                 {/* /profile — user portfolio/profile page */}
                 <Route path="/profile" element={<ProfilePage />} />
+
+                {/* /explore — wanderlust explore route page */}
+                <Route path="/explore" element={<ExplorePage />} />
 
                 {/* /login — login page with Three.js shooting star background */}
                 <Route path="/login" element={

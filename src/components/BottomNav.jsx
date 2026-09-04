@@ -8,8 +8,8 @@ const BottomNav = ({ active }) => {
     // Determine current active tab
     const currentTab = active || (
         location.pathname === '/' ? 'home' :
-        location.pathname === '/profile' ? 'profile' :
-        location.pathname === '/map' ? 'explore' : ''
+            location.pathname === '/profile' ? 'profile' :
+                (location.pathname === '/explore' || location.pathname === '/map') ? 'explore' : ''
     );
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const BottomNav = ({ active }) => {
 
             <button
                 className={`wl-nav-item ${currentTab === 'explore' ? 'active' : ''}`}
-                onClick={() => navigate('/map')}
+                onClick={() => navigate('/explore')}
             >
                 {currentTab === 'explore' ? (
                     <div className="wl-nav-active-pill">
